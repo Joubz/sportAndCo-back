@@ -1,3 +1,7 @@
+"use strict";
+
+const services = require('../services');
+
 /**
  * Vérifie que l'utilisateur qui fait la requête est bien authentifié
  * @param {*} req Requête
