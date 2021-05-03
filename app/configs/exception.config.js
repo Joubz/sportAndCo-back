@@ -4,7 +4,6 @@ module.exports = [
     { code: "CLIENT_005", status: 500, message: "Le site a rencontré une erreur interne. Veuillez rafraîchir votre page." },
     { code: "CLIENT_006", status: 403, message: "Vous n'avez pas accès à ce contenu." },
     { code: "CLIENT_007", status: 404, message: "Ressource introuvable." },
-    { code: "CLIENT_008", status: 400, message: "Le fichier CSV doit contenir les champs suivants : Lieu / Campus / Batiment / Etage (attention à la casse)." },
     { code: "CLIENT_009", status: 400, message: "Le champ est requis." },
     { code: "CLIENT_010", status: 400, message: "Le champ n'est pas valide." },
     { code: "CLIENT_011", status: 400, message: "Format d'image invalide : sont autorisés les .PNG, .JPEG et .JPG." },

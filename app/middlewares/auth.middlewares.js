@@ -21,3 +21,7 @@ const isAuthentified = (req, res, next) => {
         next();
     }
 }
+
+module.exports = {
+    isAuthentified
+}

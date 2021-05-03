@@ -1,10 +1,12 @@
 {
-  "name": "back",
+  "name": "sportAndCo-back",
   "version": "1.0.0",
-  "description": "",
+  "description": "Repository du projet Sport & Co",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config server.js dotenv_config_path=./env/development.env",
+    "prod": "nodemon -r dotenv/config server.js dotenv_config_path=./env/production.env"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,18 @@
   "bugs": {
     "url": "https://github.com/Joubz/sportAndCo-back/issues"
   },
-  "homepage": "https://github.com/Joubz/sportAndCo-back#readme"
+  "homepage": "https://github.com/Joubz/sportAndCo-back#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.6.0",
+    "jsdoc": "^3.6.6",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "validatorjs": "^3.22.1"
+  }
 }
