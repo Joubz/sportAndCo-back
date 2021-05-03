@@ -7,3 +7,5 @@ const controllers = require('../controllers');
 const router = express.Router();
 
 router.get('/', middlewares.auth.isAuthentified, controllers.exemple.getExemple);
+
+module.exports = router;
