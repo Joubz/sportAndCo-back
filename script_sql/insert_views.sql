@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* CREATE VIEW EQUIPMENT_VIEW                                     */
 /*==============================================================*/
-DROP VIEW IF EXISTS `EQUIPMENT_VIEW`;
+DROP VIEW IF EXISTS EQUIPMENT_VIEW;
 CREATE VIEW EQUIPMENT_VIEW AS
     SELECT 
         EQUIPMENT.EQUIPMENT_ID AS EQUIPMENT_ID,
@@ -18,6 +18,7 @@ CREATE VIEW EQUIPMENT_VIEW AS
         CATEGORY.CATEGORY_NAME AS CATEGORY_NAME,
         
         RENTER.RENTER_ID AS RENTER_ID,
+		RENTER.COMPANY_NAME AS COMPANY_NAME,
         RENTER.FIRST_NAME AS FIRST_NAME,
         RENTER.LAST_NAME AS LAST_NAME,
         RENTER.EMAIL AS EMAIL,
