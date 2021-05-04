@@ -9,8 +9,9 @@ USE sport_and_co;
 
 /*==============================================================*/
 CREATE TABLE EXEMPLE (
-    EXEMPLE_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+	EXEMPLE_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
     TITLE VARCHAR(100) COMMENT '',
+	DESCRIPTION VARCHAR(1000) COMMENT '',
     PRIMARY KEY auto_increment (EXEMPLE_ID)
 );
 
