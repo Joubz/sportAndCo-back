@@ -29,6 +29,32 @@ const getEquipment = async (equipmentId) => {
     return queryRes;
 }
 
+/**
+ * Récupère tous les équipements depuis la bdd
+ * @return queryRes la liste des équipements trouvés
+ */
+const getListEquipment = async () => {
+    const query =
+        'SELECT EQUIPMENT_ID, EQUIPMENT_NAME, PRICE, IMAGE_LINK ' +
+        'FROM EQUIPMENT';
+
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query);
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return queryRes;
+}
+
 module.exports = {
-    getEquipment
+    getEquipment,
+    getListEquipment
 }
