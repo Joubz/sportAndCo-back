@@ -4,7 +4,7 @@ const { transaction } = require("../../database");
 
 /**
  * Récupère un exemple depuis la BDD
- * @param {*} id Identifiant de l'exemple
+ * @param {*} exempleId Identifiant de l'exemple
  * @returns L'exemple trouvé, une erreur sinon
  */
 const getExemple = async (exempleId) => {

@@ -45,5 +45,6 @@ app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 5000
 
 app.use('/api/exemple', routes.exemple);
 app.use('/api/equipment', routes.equipment);
+app.use('/api/order', routes.order);
 
 module.exports = app;
