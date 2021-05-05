@@ -66,6 +66,13 @@ CREATE TABLE RENTER (
 );
 
 /*==============================================================*/
+CREATE TABLE METROPOLISES (
+    METROPOLISES_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    METROPOLISES_NAME VARCHAR(100) COMMENT '',
+    PRIMARY KEY auto_increment (METROPOLISES_ID)
+);
+
+/*==============================================================*/
 CREATE TABLE CLIENT (
     CLIENT_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
     PASSWORD VARCHAR(250) COMMENT '',
@@ -123,3 +130,6 @@ alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_CLIENT_ foreign key
       
 alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_BILL_ foreign key (BILL_ID)
       references BILL (BILL_ID) on delete restrict on update restrict;
+      
+alter table RENTER add constraint FK_RENTER_LOCATE_METROPOLISES_ foreign key (METROPOLISES_ID)
+      references METROPOLISES (METROPOLISES_ID) on delete restrict on update restrict;
