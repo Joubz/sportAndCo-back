@@ -63,7 +63,7 @@ const getOrderByEquipment = async (equipmentId) => {
  */
 const getOrderByEquipmentForAvailability = async (equipmentId) => {
 
-    const query = 'SELECT ORDER_ID, BILL_ID, CLIENT_ID, EQUIPMENT_ID, RENTER_ID, START_DATE, FINISH_DATE, QUANTITY_RENTED ' +
+    const query = 'SELECT ORDER_ID, BILL_ID, CLIENT_ID, EQUIPMENT_ID, RENTER_ID, START_DATE, END_DATE, QUANTITY_RENTED, STATUS_RENDERED ' +
         'FROM ORDER_VIEW ' +
         'WHERE EQUIPMENT_ID = ?';
 

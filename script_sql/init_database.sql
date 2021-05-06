@@ -9,9 +9,9 @@ USE sport_and_co;
 
 /*==============================================================*/
 CREATE TABLE EXEMPLE (
-	EXEMPLE_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    EXEMPLE_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
     TITLE VARCHAR(100) COMMENT '',
-	DESCRIPTION VARCHAR(1000) COMMENT '',
+    DESCRIPTION VARCHAR(1000) COMMENT '',
     PRIMARY KEY auto_increment (EXEMPLE_ID)
 );
 
@@ -30,12 +30,13 @@ CREATE TABLE EQUIPMENT (
     CATEGORY_ID INT NOT NULL COMMENT '',
     EQUIPMENT_NAME VARCHAR(100) COMMENT '',
     DESCRIPTION VARCHAR(1000) COMMENT '',
-    CREATION_DATE VARCHAR(100) COMMENT '',
+    START_DATE VARCHAR(100) COMMENT '',
+    END_DATE VARCHAR(100) COMMENT '',
     PRICE INT NOT NULL COMMENT '',
     TOTAL_QUANTITY INT NOT NULL COMMENT '',
-    AVAILABLE_QUANTITY INT NOT NULL COMMENT '',
-    IMAGE_LINK VARCHAR(500) COMMENT '',
-    OTHER_TEXT VARCHAR(1000) COMMENT '',
+    IMAGE_LINK_1 VARCHAR(500) COMMENT '',
+    IMAGE_LINK_2 VARCHAR(500) COMMENT '',
+    IMAGE_LINK_3 VARCHAR(500) COMMENT '',
     PRIMARY KEY auto_increment (EQUIPMENT_ID)
 );
 
@@ -47,10 +48,18 @@ CREATE TABLE CATEGORY (
 );
 
 /*==============================================================*/
+CREATE TABLE METROPOLISES (
+    METROPOLISES_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    METROPOLISES_NAME VARCHAR(100) COMMENT '',
+    PRIMARY KEY auto_increment (METROPOLISES_ID)
+);
+
+/*==============================================================*/
 CREATE TABLE RENTER (
     RENTER_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    METROPOLISES_ID INT NOT NULL COMMENT '',
     PASSWORD VARCHAR(250) COMMENT '',
-    ACCEPTED varchar(1) COMMENT '',
+    ACCEPTED VARCHAR(1) COMMENT '',
     COMPANY_NAME VARCHAR(250) COMMENT '',
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
@@ -66,26 +75,18 @@ CREATE TABLE RENTER (
 );
 
 /*==============================================================*/
-CREATE TABLE METROPOLISES (
-    METROPOLISES_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
-    METROPOLISES_NAME VARCHAR(100) COMMENT '',
-    PRIMARY KEY auto_increment (METROPOLISES_ID)
-);
-
-/*==============================================================*/
 CREATE TABLE CLIENT (
     CLIENT_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
     PASSWORD VARCHAR(250) COMMENT '',
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
     EMAIL VARCHAR(250) COMMENT '',
-	PHONE VARCHAR(250) COMMENT '',
+    PHONE VARCHAR(250) COMMENT '',
     BIRTH_DATE VARCHAR(100) COMMENT '',
     ADDRESS VARCHAR(250) COMMENT '',
     ADDITIONAL_ADDRESS VARCHAR(250) COMMENT '',
     POSTAL_CODE VARCHAR(100) COMMENT '',
     CITY VARCHAR(250) COMMENT '',
-    IMAGE_LINK VARCHAR(500) COMMENT '',
     PRIMARY KEY auto_increment (CLIENT_ID)
 );
 
@@ -94,19 +95,18 @@ CREATE TABLE EQUIPMENT_ORDER (
     ORDER_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
     CLIENT_ID INT NOT NULL COMMENT '',
     EQUIPMENT_ID INT NOT NULL COMMENT '',
-    BILL_ID INT NOT NULL COMMENT '',
     START_DATE DATE COMMENT '',
-    FINISH_DATE DATE COMMENT '',
+    END_DATE DATE COMMENT '',
     RENT_DATE DATE COMMENT '',
-    ADDRESS VARCHAR(250) COMMENT '',
+    STATUS_RENDERED VARCHAR(1) COMMENT '',
     QUANTITY_RENTED INT NOT NULL COMMENT '',
     PRIMARY KEY auto_increment (ORDER_ID)
 );
 
-
 /*==============================================================*/
 CREATE TABLE BILL (
     BILL_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    ORDER_ID INT NOT NULL COMMENT '',
     DESCRIPTION VARCHAR(50) COMMENT '',
     BILL_DATE VARCHAR(100) COMMENT '',
     BILL_PRICE INT NOT NULL COMMENT '',
@@ -116,20 +116,20 @@ CREATE TABLE BILL (
 /*==============================================================*/
 /* Create Foreign Key                                           */
 /*==============================================================*/
-alter table EQUIPMENT add constraint FK_EQUIPMENT_CONCERNS_CATEGORY_ foreign key (CATEGORY_ID)
+alter table EQUIPMENT add constraint FK_EQUIPMENT_CONCERNS_CATEGORY foreign key (CATEGORY_ID)
       references CATEGORY (CATEGORY_ID) on delete restrict on update restrict;
       
-alter table EQUIPMENT add constraint FK_USER_CREATE_EQUIPMENT_ foreign key (RENTER_ID)
+alter table EQUIPMENT add constraint FK_USER_CREATE_EQUIPMENT foreign key (RENTER_ID)
       references RENTER (RENTER_ID) on delete restrict on update restrict;
       
-alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_EQUIPMENT_ foreign key (EQUIPMENT_ID)
+alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_EQUIPMENT foreign key (EQUIPMENT_ID)
       references EQUIPMENT (EQUIPMENT_ID) on delete restrict on update restrict;
       
-alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_CLIENT_ foreign key (CLIENT_ID)
-      references RENTING_CLIENT (CLIENT_ID) on delete restrict on update restrict;
+alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_CLIENT foreign key (CLIENT_ID)
+      references CLIENT (CLIENT_ID) on delete restrict on update restrict;
       
-alter table EQUIPMENT_ORDER add constraint FK_ORDER_CONCERNS_BILL_ foreign key (BILL_ID)
-      references BILL (BILL_ID) on delete restrict on update restrict;
-      
-alter table RENTER add constraint FK_RENTER_LOCATE_METROPOLISES_ foreign key (METROPOLISES_ID)
+alter table BILL add constraint FK_BILL_CONCERNS_ORDER foreign key (ORDER_ID)
+      references EQUIPMENT_ORDER (ORDER_ID) on delete restrict on update restrict;
+
+alter table RENTER add constraint FK_RENTER_LOCATE_METROPOLISES foreign key (METROPOLISES_ID)
       references METROPOLISES (METROPOLISES_ID) on delete restrict on update restrict;
