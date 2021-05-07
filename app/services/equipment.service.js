@@ -35,7 +35,7 @@ const getEquipment = async (equipmentId) => {
  */
 const getListEquipment = async () => {
     const query =
-        'SELECT ' +  'EQUIPMENT_ID, EQUIPMENT_NAME, PRICE, IMAGE_LINK ' +
+        'SELECT ' +  'EQUIPMENT_ID, EQUIPMENT_NAME, PRICE, IMAGE_LINK_1 ' +
         'FROM EQUIPMENT';
 
     let [queryRes, fields] = [];
