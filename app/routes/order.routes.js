@@ -10,4 +10,6 @@ router.get("/:orderId", middlewares.auth.isAuthentified, controllers.order.getOr
 
 router.get("/order-by-equipment/:equipmentId", middlewares.auth.isAuthentified, controllers.order.getOrderByEquipment);
 
+router.get("/order-by-equipment-available/:equipmentId", middlewares.auth.isAuthentified, controllers.order.getOrderByEquipmentForAvailability);
+
 module.exports = router;
