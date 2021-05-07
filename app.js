@@ -43,6 +43,7 @@ app.use(compression())
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
+app.use('/images', express.static('./images'));
 app.use('/api/exemple', routes.exemple);
 app.use('/api/equipment', routes.equipment);
 app.use('/api/order', routes.order);
