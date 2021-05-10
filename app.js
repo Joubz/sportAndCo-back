@@ -47,5 +47,7 @@ app.use('/images', express.static('./images'));
 app.use('/api/exemple', routes.exemple);
 app.use('/api/equipment', routes.equipment);
 app.use('/api/order', routes.order);
+app.use('/api/category', routes.category);
+app.use('/api/metropolises', routes.metropolises);
 
 module.exports = app;

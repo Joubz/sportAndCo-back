@@ -6,10 +6,8 @@ const controllers = require('../controllers');
 
 const router = express.Router();
 
-
 router.get("/get-list-equipment", middlewares.auth.isAuthentified, controllers.equipment.getListEquipment);
 
 router.get("/:equipmentId", middlewares.auth.isAuthentified, controllers.equipment.getEquipment);
-
 
 module.exports = router;
