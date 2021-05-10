@@ -5,6 +5,7 @@ const equipment = require("./equipment.service");
 const order = require("./order.service");
 const category = require("./category.service");
 const metropolises = require("./metropolises.service");
+const search = require("./search.service");
 
 module.exports = {
     exception,
@@ -13,5 +14,6 @@ module.exports = {
     equipment,
     order,
     category,
-    metropolises
+    metropolises,
+    search
 };

@@ -38,7 +38,35 @@ const getListEquipment = async (req, res) => {
     res.status(200).json(listEquipments);
 };
 
+/**
+ * Récupère la liste des équipements selon les paramètres de recherche
+ * @param {*} req Requête
+ * @param {*} res Réponse Retourne la code http 200 et la liste des équipements
+ * @returns L'erreur retournée par le service
+ */
+
+const searchEquipment = async (req, res) => {
+    let listEquipments = [];
+
+    try {
+        if(req.params.categoryId == 0 && req.params.metropolisesId == 0) {
+            listEquipments = await services.search.searchEquipmentWithName(req.params.equipmentName, req.params.startDate, req.params.endDate);
+        } else if (req.params.categoryId != 0 && req.params.metropolisesId == 0) {
+            listEquipments = await services.search.searchEquipmentWithCategory(req.params.equipmentName, req.params.startDate, req.params.endDate, req.params.categoryId);
+        } else if (req.params.categoryId == 0 && req.params.metropolisesId != 0) {
+            listEquipments = await services.search.searchEquipmentWithMetropolises(req.params.equipmentName, req.params.startDate, req.params.endDate, req.params.metropolisesId);
+        } else if (req.params.categoryId != 0 && req.params.metropolisesId != 0){
+            listEquipments = await services.search.searchEquipmentWithCategoryAndMetropolises(req.params.equipmentName, req.params.startDate, req.params.endDate, req.params.categoryId, req.params.metropolisesId);
+        }
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+
+    res.status(200).json(listEquipments);
+};
+
 module.exports = {
     getEquipment,
-    getListEquipment
+    getListEquipment,
+    searchEquipment
 }

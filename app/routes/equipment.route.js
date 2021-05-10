@@ -6,7 +6,9 @@ const controllers = require('../controllers');
 
 const router = express.Router();
 
-router.get("/get-list-equipment", middlewares.auth.isAuthentified, controllers.equipment.getListEquipment);
+router.get("/list-equipment", middlewares.auth.isAuthentified, controllers.equipment.getListEquipment);
+
+router.get("/search-equipment/:equipmentName/:startDate/:endDate/:categoryId/:metropolisesId", middlewares.auth.isAuthentified, controllers.equipment.searchEquipment);
 
 router.get("/:equipmentId", middlewares.auth.isAuthentified, controllers.equipment.getEquipment);
 
