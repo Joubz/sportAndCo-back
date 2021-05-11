@@ -25,7 +25,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "helmet": "^4.6.0",
-    "jsdoc": "^0.0.0",
+    "jsdoc": "^3.6.6",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.3.0",
     "mysql2": "^2.2.5",
