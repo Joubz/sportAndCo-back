@@ -6,6 +6,8 @@ const order = require("./order.service");
 const category = require("./category.service");
 const metropolises = require("./metropolises.service");
 const search = require("./search.service");
+const client = require("./client.service");
+const mail = require("./mail.service");
 
 module.exports = {
     exception,
@@ -15,5 +17,7 @@ module.exports = {
     order,
     category,
     metropolises,
-    search
+    search,
+    client,
+    mail
 };

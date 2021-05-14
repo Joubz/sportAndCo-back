@@ -3,11 +3,13 @@ const equipment = require("./equipment.route")
 const order = require("./order.routes");
 const category = require("./category.routes");
 const metropolises = require("./metropolises.routes");
+const client = require("./client.routes")
 
 module.exports = {
     exemple,
     equipment,
     order,
     category,
-    metropolises
+    metropolises,
+    client
 };

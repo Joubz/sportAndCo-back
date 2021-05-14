@@ -17,7 +17,7 @@ const searchEquipmentWithName = async (equipmentName, startDate, endDate) => {
         'START_DATE < ? AND ' +
         'END_DATE > ? ';
 
-    const params = ["%" + " " + "%", startDate, endDate];
+    const params = ["%" + equipmentName + "%", startDate, endDate];
 
     let [queryRes] = [];
 
