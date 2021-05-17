@@ -4,9 +4,14 @@ const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
+    secure: false,
+    port: 25,
     auth: {
         user: 'sport.and.co.33@gmail.com',
         pass: 'sport&co33'
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -15,7 +20,7 @@ const sendConfirmationMail = async (clientFirstName, clientLastName, clientMail)
         from: 'sport.and.co.33@gmail.com',
         to: clientMail,
         subject: 'Sport&Co : Compte crée',
-        text: 'Bonjour ' + clientFirstName + ' ' + clientLastName + '\n' + 'Votre compte sur Sport&Co à été créer.'
+        text: 'Bonjour ' + clientFirstName + ' ' + clientLastName + '\n' + 'Votre compte sur Sport&Co a été créer.'
     };
 
     try {
