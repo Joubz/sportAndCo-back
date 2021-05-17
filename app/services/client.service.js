@@ -36,7 +36,9 @@ const createClient = async (newClient) => {
 };
 
 /**
- * Connexion client.
+ * Récupère les informations du client
+ * @param {*} email du client
+ * @returns une erreur ou les informations du client
  */
 const loginClient = async (email) => {
   const query = "SELECT * FROM CLIENT WHERE EMAIL = ?";
@@ -52,10 +54,11 @@ const loginClient = async (email) => {
   }).catch((err) => {
     throw err;
   });
+
   return queryRes;
 };
 
 module.exports = {
   createClient,
-  loginClient,
+  loginClient
 };
