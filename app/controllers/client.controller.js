@@ -3,6 +3,7 @@
 const services = require("../services");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const md5 = require('md5');
 
 /**
  * Ajoute un nouveau client
@@ -12,6 +13,8 @@ const jwt = require('jsonwebtoken');
  */
 const createClient = async (req, res) => {
 	let newClient = req.body.newClient;
+
+	newClient.password = bcrypt.hashSync(md5(newClient.password), 8);
 
 	try {
 		await services.client.createClient(newClient);
