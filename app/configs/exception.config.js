@@ -11,6 +11,7 @@ module.exports = [
     { code: "CLIENT_013", status: 400, message: "Fichier trop lourd : 2Mo maximum." },
     { code: "CLIENT_014", status: 403, message: "Ce lien a expiré ou n'existe pas." },
     { code: "CLIENT_016", status: 403, message: "Votre identifiant ou votre mot de passe est incorrect." },
+    { code: "CLIENT_017", status: 403, message: "Votre mot de passe est incorrect." },
     { code: "CLIENT_019", status: 403, message: "Le format de l'image n'est pas valide (PNG/JPG)." },
     { code: "CLIENT_020", status: 403, message: "L'image est trop volumineuse (limit : 5 MO)." },
 ];

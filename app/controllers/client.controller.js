@@ -50,13 +50,18 @@ const loginClient = async (req, res) => {
 		return services.exception.generateException(err, res);
 	}
 
+	console.log(loginClient.password);
+	console.log(foundUser[0].PASSWORD);
+
 	const isPasswordValid = bcrypt.compareSync(
 		loginClient.password,
 		foundUser[0].PASSWORD
 	);
 
+	console.log(isPasswordValid);
+
 	if (!isPasswordValid) {
-		return services.exception.generateException(new services.exception.httpException('CLIENT_016'), res);
+		return services.exception.generateException(new services.exception.httpException('CLIENT_017'), res);
 	}
 
 	const token = jwt.sign(
