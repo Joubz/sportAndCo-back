@@ -49,5 +49,6 @@ app.use('/api/equipment', routes.equipment);
 app.use('/api/order', routes.order);
 app.use('/api/category', routes.category);
 app.use('/api/metropolises', routes.metropolises);
+app.use('/api/client', routes.client)
 
 module.exports = app;

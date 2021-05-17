@@ -29,7 +29,9 @@
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.3.0",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.6.0",
     "nodemon": "^2.0.7",
+    "ts-md5": "^1.2.7",
     "validatorjs": "^3.22.1"
   }
 }
