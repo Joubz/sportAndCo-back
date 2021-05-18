@@ -14,7 +14,7 @@ const md5 = require('md5');
 const createClient = async (req, res) => {
 	let newClient = req.body.newClient;
 
-	newClient.password = bcrypt.hashSync(md5(newClient.password), 8);
+	 newClient.password = bcrypt.hashSync(newClient.password, 8);
 
 	try {
 		await services.client.createClient(newClient);
@@ -53,15 +53,10 @@ const loginClient = async (req, res) => {
 		return services.exception.generateException(err, res);
 	}
 
-	console.log(loginClient.password);
-	console.log(foundUser[0].PASSWORD);
-
 	const isPasswordValid = bcrypt.compareSync(
 		loginClient.password,
 		foundUser[0].PASSWORD
 	);
-
-	console.log(isPasswordValid);
 
 	if (!isPasswordValid) {
 		return services.exception.generateException(new services.exception.httpException('CLIENT_017'), res);
