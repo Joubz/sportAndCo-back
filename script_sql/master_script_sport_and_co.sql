@@ -21,6 +21,8 @@ alter table BILL drop foreign key FK_BILL_CONCERNS_ORDER;
 
 alter table RENTER drop foreign key FK_RENTER_LOCATE_METROPOLISES;
 
+alter table CARD drop foreign key FK_CARD_BELONG_CLIENT;
+
 /*==============================================================*/
 /* DROP Tables                                                  */
 /*==============================================================*/
@@ -41,6 +43,8 @@ drop table if exists METROPOLISES;
 drop table if exists CLIENT;
 
 drop table if exists EQUIPMENT_ORDER;
+
+drop table if exists CARD;
 
 
 /*==============================================================*/
@@ -100,7 +104,7 @@ CREATE TABLE RENTER (
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
     EMAIL VARCHAR(250) COMMENT '',
-    PHONE VARCHAR(250) COMMENT '',
+    PHONE VARCHAR(250) COMMENT '' UNIQUE,
     BIRTH_DATE VARCHAR(100) COMMENT '',
     ADDRESS VARCHAR(250) COMMENT '',
     ADDITIONAL_ADDRESS VARCHAR(250) COMMENT '',
@@ -116,7 +120,7 @@ CREATE TABLE CLIENT (
     PASSWORD VARCHAR(250) COMMENT '',
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
-    EMAIL VARCHAR(250) COMMENT '',
+    EMAIL VARCHAR(250) COMMENT '' UNIQUE,
     PHONE VARCHAR(250) COMMENT '',
     BIRTH_DATE VARCHAR(100) COMMENT '',
     ADDRESS VARCHAR(250) COMMENT '',
@@ -149,6 +153,15 @@ CREATE TABLE BILL (
     PRIMARY KEY auto_increment (BILL_ID)
 );
 
+CREATE TABLE CARD (
+    CARD_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    CARD_NUMBER VARCHAR(500) COMMENT '',
+    CLIENT_ID INT NOT NULL COMMENT '',
+    CARD_NAME VARCHAR(500) COMMENT '',
+    EXPIRATION_DATE VARCHAR(500) COMMENT '',
+    CVV VARCHAR(500) COMMENT '',
+    PRIMARY KEY auto_increment (CARD_ID)
+);
 /*==============================================================*/
 /* Create Foreign Key                                           */
 /*==============================================================*/
@@ -170,6 +183,9 @@ alter table BILL add constraint FK_BILL_CONCERNS_ORDER foreign key (ORDER_ID)
 alter table RENTER add constraint FK_RENTER_LOCATE_METROPOLISES foreign key (METROPOLISES_ID)
       references METROPOLISES (METROPOLISES_ID) on delete restrict on update restrict;
 
+alter table CARD add constraint FK_CARD_BELONG_CLIENT foreign key (CLIENT_ID)
+    references CLIENT (CLIENT_ID) on delete restrict on update restrict;
+	
 /*==============================================================*/
 /* CREATE VIEW EQUIPMENT_VIEW                                   */
 /*==============================================================*/
@@ -364,6 +380,12 @@ VALUES
 (8 ,'desc1', '2021-05-05', 40),
 (9 ,'desc1', '2021-05-05', 40);
 
+
+INSERT INTO `CARD` (`CARD_NUMBER`,`CLIENT_ID`,`CARD_NAME`,`EXPIRATION_DATE`,`CVV`)
+VALUES
+(45454525,1,"TEST","2021-05-12",213),
+(45454525,1,"TEST2","2021-05-05",456),
+(88585525,1,"Marcel","2021-05-05",798);
 
 INSERT INTO EXEMPLE(TITLE, DESCRIPTION)
 VALUES

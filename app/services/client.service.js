@@ -58,7 +58,33 @@ const loginClient = async (email) => {
   return queryRes;
 };
 
+/**
+ * Récupère tous les mails des clients depuis la bdd
+ * @return queryRes la liste des mails trouvés
+ */
+const getListMailClient = async () => {
+    const query =
+        'SELECT EMAIL ' +
+        'FROM CLIENT';
+
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query);
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return queryRes;
+}
+
 module.exports = {
   createClient,
-  loginClient
-};
+  loginClient,
+  getListMailClient
+}

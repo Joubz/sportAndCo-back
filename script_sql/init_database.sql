@@ -3,7 +3,6 @@
 /* This script is used when the datase is initialised, only     */
 /* one time                                                     */
 /*==============================================================*/
-
 CREATE DATABASE IF NOT EXISTS sport_and_co;
 USE sport_and_co;
 
@@ -63,7 +62,7 @@ CREATE TABLE RENTER (
     COMPANY_NAME VARCHAR(250) COMMENT '',
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
-    EMAIL VARCHAR(250) COMMENT '',
+    EMAIL VARCHAR(250) COMMENT '' UNIQUE,
     PHONE VARCHAR(250) COMMENT '',
     BIRTH_DATE VARCHAR(100) COMMENT '',
     ADDRESS VARCHAR(250) COMMENT '',
@@ -80,7 +79,7 @@ CREATE TABLE CLIENT (
     PASSWORD VARCHAR(250) COMMENT '',
     FIRST_NAME VARCHAR(250) COMMENT '',
     LAST_NAME VARCHAR(250) COMMENT '',
-    EMAIL VARCHAR(250) COMMENT '',
+    EMAIL VARCHAR(250) COMMENT '' UNIQUE,
     PHONE VARCHAR(250) COMMENT '',
     BIRTH_DATE VARCHAR(100) COMMENT '',
     ADDRESS VARCHAR(250) COMMENT '',
@@ -113,6 +112,16 @@ CREATE TABLE BILL (
     PRIMARY KEY auto_increment (BILL_ID)
 );
 
+CREATE TABLE CARD (
+    CARD_ID INT NOT NULL AUTO_INCREMENT COMMENT '',
+    CARD_NUMBER VARCHAR(500) COMMENT '',
+    CLIENT_ID INT NOT NULL COMMENT '',
+    CARD_NAME VARCHAR(500) COMMENT '',
+    EXPIRATION_DATE VARCHAR(500) COMMENT '',
+    CVV VARCHAR(500) COMMENT '',
+    PRIMARY KEY auto_increment (CARD_ID)
+);
+
 /*==============================================================*/
 /* Create Foreign Key                                           */
 /*==============================================================*/
@@ -133,3 +142,6 @@ alter table BILL add constraint FK_BILL_CONCERNS_ORDER foreign key (ORDER_ID)
 
 alter table RENTER add constraint FK_RENTER_LOCATE_METROPOLISES foreign key (METROPOLISES_ID)
       references METROPOLISES (METROPOLISES_ID) on delete restrict on update restrict;
+
+alter table CARD add constraint FK_CARD_BELONG_CLIENT foreign key (CLIENT_ID)
+    references CLIENT (CLIENT_ID) on delete restrict on update restrict;

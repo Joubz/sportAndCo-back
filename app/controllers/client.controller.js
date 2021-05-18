@@ -81,7 +81,25 @@ const loginClient = async (req, res) => {
 	});
 };
 
+/**
+ * Récupère la liste des mails clients
+ * @param {*} req Requête
+ * @param {*} res Réponse Retourne la code http 200 et la liste des mails
+ * @returns L'erreur retournée par le service
+ */
+const getListMailClient = async (req, res) => {
+    let listMailClient = [];
+
+    try {
+        listMailClient = await services.client.getListMailClient();
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(listMailClient);
+};
+
 module.exports = {
 	createClient,
-	loginClient
+	loginClient,
+    getListMailClient
 };
