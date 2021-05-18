@@ -1,6 +1,7 @@
 "use strict";
 
 const services = require('../services');
+const bcrypt = require('bcrypt');
 
 /**
  * Ajoute un nouveau client
@@ -10,6 +11,8 @@ const services = require('../services');
  */
 const createClient = async (req, res) => {
     let newClient = req.body.newClient;
+
+    newClient.password = bcrypt.hashSync(newClient.password, 8);
 
     try {
         await services.client.createClient(newClient);
