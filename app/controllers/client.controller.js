@@ -75,11 +75,23 @@ const loginClient = async (req, res) => {
 	);
 
 	res.status(200).json({
-		id: foundUser[0].CLIENT_ID,
-		email: foundUser[0].EMAIL,
+		client : {
+			CLIENT_ID: foundUser[0].CLIENT_ID,
+			PASSWORD: '',
+			LAST_NAME: foundUser[0].LAST_NAME,
+			FIRST_NAME: foundUser[0].FIRST_NAME,
+			EMAIL: foundUser[0].EMAIL,
+			PHONE: foundUser[0].PHONE,
+			BIRTH_DATE: foundUser[0].BIRTH_DATE,
+			ADDRESS: foundUser[0].ADDRESS,
+			ADDITIONAL_ADDRESS: foundUser[0].ADDITIONAL_ADDRESS,
+			POSTAL_CODE: foundUser[0].POSTAL_CODE,
+			CITY: foundUser[0].CITY
+		},
 		authenticationToken: token
 	});
 };
+
 
 /**
  * Récupère la liste des mails clients
