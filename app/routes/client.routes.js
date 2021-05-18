@@ -6,6 +6,8 @@ const controllers = require('../controllers');
 
 const router = express.Router();
 
-router.post('/', controllers.client.createClient);
+router.get('/list-mail', controllers.client.getListMailClient);
+
+router.post('/create-client', controllers.client.createClient);
 
 module.exports = router;
