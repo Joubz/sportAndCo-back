@@ -8,6 +8,7 @@ const metropolises = require("./metropolises.service");
 const search = require("./search.service");
 const client = require("./client.service");
 const mail = require("./mail.service");
+const admin = require("./admin.service");
 
 module.exports = {
     exception,
@@ -19,5 +20,6 @@ module.exports = {
     metropolises,
     search,
     client,
-    mail
+    mail,
+    admin
 };
