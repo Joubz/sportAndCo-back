@@ -6,6 +6,8 @@ const order = require("./order.service");
 const category = require("./category.service");
 const metropolises = require("./metropolises.service");
 const search = require("./search.service");
+const payment = require("./payment.service");
+const bill = require("./bill.service");
 const client = require("./client.service");
 const mail = require("./mail.service");
 
@@ -18,6 +20,8 @@ module.exports = {
     category,
     metropolises,
     search,
+    payment,
+    bill,
     client,
     mail
 };

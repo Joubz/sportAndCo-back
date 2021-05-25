@@ -1,9 +1,10 @@
 const exemple = require("./exemple.routes");
-const equipment = require("./equipment.route")
+const equipment = require("./equipment.route");
 const order = require("./order.routes");
 const category = require("./category.routes");
 const metropolises = require("./metropolises.routes");
-const client = require("./client.routes")
+const payment = require("./payment.routes");
+const client = require("./client.routes");
 
 module.exports = {
     exemple,
@@ -11,5 +12,6 @@ module.exports = {
     order,
     category,
     metropolises,
+    payment,
     client
 };

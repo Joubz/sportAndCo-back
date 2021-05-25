@@ -1,8 +1,9 @@
 const exemple = require("./exemple.controller");
 const equipment = require("./equipment.controller");
-const order = require("./order.controller")
+const order = require("./order.controller");
 const category = require("./category.controller");
 const metropolises = require("./metropolises.controller");
+const payment = require("./payment.controller");
 const client = require("./client.controller");
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
     order,
     category,
     metropolises,
+    payment,
     client
 };
