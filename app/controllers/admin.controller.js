@@ -35,7 +35,7 @@ const loginAdmin = async (req, res) => {
         return services.exception.generateException(new services.exception.httpException('CLIENT_016'), res);
     }
 
-    const token = jwt.sign(
+    const ADMINISTRATOR_TOKEN = jwt.sign(
         {
             id: foundUser[0].ADMINISTRATOR_ID,
             username: foundUser[0].LOGIN,
