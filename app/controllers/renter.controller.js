@@ -31,7 +31,24 @@ const createRenter = async (req, res) => {
 	res.status(200).json();
 };
 
+/**
+ * Récupère la liste des mails clients
+ * @param {*} req Requête
+ * @param {*} res Réponse Retourne la code http 200 et la liste des mails
+ * @returns L'erreur retournée par le service
+ */
+ const getListMailRenter = async (req, res) => {
+    let listMailRenter = [];
+
+    try {
+        listMailRenter = await services.renter.getListMailRenter();
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(listMailRenter);
+};
 
 module.exports = {
-	createRenter
+	createRenter,
+	getListMailRenter
 };

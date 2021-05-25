@@ -36,6 +36,32 @@ const createRenter = async (newRenter) => {
   });
 };
 
+/**
+ * Récupère tous les mails des loueurs depuis la bdd
+ * @return queryRes la liste des mails trouvés
+ */
+ const getListMailRenter = async () => {
+  const query =
+      'SELECT EMAIL ' +
+      'FROM RENTER';
+
+  let [queryRes, fields] = [];
+
+  await transaction(async connection => {
+      try {
+          [queryRes, fields] = await connection.query(query);
+      } catch (err) {
+          throw new Error(err);
+      }
+  })
+      .catch((err) => {
+          throw err;
+      });
+
+  return queryRes;
+}
+
 module.exports = {
-  createRenter
+  createRenter,
+  getListMailRenter
 }
