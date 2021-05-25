@@ -6,6 +6,8 @@ const middlewares = require('../middlewares');
 
 const router = express.Router();
 
+router.get('/list', controllers.renter.getRenterList);
+
 router.get('/not-accept-list', controllers.renter.getNotAcceptList);
 
 router.put("/accept-renter/:renterId",  controllers.renter.acceptRenter);

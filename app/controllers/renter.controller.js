@@ -3,6 +3,24 @@
 const services = require('../services');
 
 /**
+ * Récupère la liste des loueurs
+ * @param {*} req Requête
+ * @param {*} res Réponse Retourne la code http 200 et la liste des catégories
+ * @returns L'erreur retournée par le service
+ */
+
+const getRenterList = async (req, res) => {
+    let renterList = [];
+
+    try {
+        renterList = await services.renter.getRenterList();
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(renterList);
+};
+
+/**
  * Récupère la liste des loueurs non accepté
  * @param {*} req Requête
  * @param {*} res Réponse Retourne la code http 200 et la liste des catégories
@@ -72,5 +90,6 @@ const deleteRenter = async (req, res) => {
 module.exports = {
     getNotAcceptList,
     acceptRenter,
-    deleteRenter
+    deleteRenter,
+    getRenterList
 }

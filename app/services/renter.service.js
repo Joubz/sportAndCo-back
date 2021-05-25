@@ -3,6 +3,31 @@
 const { transaction } = require("../../database");
 
 /**
+ * Récupère tout les loueurs
+ * @return queryRes la liste des loueurs trouvés
+ */
+const getRenterList = async () => {
+    const query =
+        'SELECT * ' +
+        'FROM RENTER ';
+
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query);
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return queryRes;
+}
+
+/**
  * Récupère tout les loueurs non acceptés
  * @return queryRes la liste des loueurs trouvés
  */
@@ -89,5 +114,6 @@ const deleteRenter = async (renterId) => {
 module.exports = {
     getNotAcceptList,
     acceptRenter,
-    deleteRenter
+    deleteRenter,
+    getRenterList
 }
