@@ -65,6 +65,16 @@ const postOrder = async (req, res) => {
         const lastId = await services.order.postOrder(order);
         order.id = lastId;
         await services.bill.postBill(order);
+
+        await services.mail.sendOrderConfirmationMail(
+            order.client.firstName,
+            order.client.lastName,
+            order.client.email,
+            order.equipment.name,
+            order.quantityRented,
+            order.bill.billPrice
+        );
+
     } catch(err) {
         return services.exception.generateException(err, res);
     }
