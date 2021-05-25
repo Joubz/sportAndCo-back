@@ -6,10 +6,10 @@ const middlewares = require('../middlewares');
 
 const router = express.Router();
 
-router.get('/not-accept-list', middlewares.auth.isAuthentifiedAdmin, controllers.renter.getNotAcceptList);
+router.get('/not-accept-list', controllers.renter.getNotAcceptList);
 
-router.put("/accept-renter/:renterId", middlewares.auth.isAuthentifiedAdmin, controllers.renter.acceptRenter);
+router.put("/accept-renter/:renterId",  controllers.renter.acceptRenter);
 
-router.delete("/:renterId", middlewares.auth.isAuthentifiedAdmin, controllers.renter.deleteRenter);
+router.delete("/:renterId/:renterFirstName/:renterLastName/:renterMail/:companyName",  controllers.renter.deleteRenter);
 
 module.exports = router;
