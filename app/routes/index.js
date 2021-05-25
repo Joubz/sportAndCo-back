@@ -5,6 +5,7 @@ const category = require("./category.routes");
 const metropolises = require("./metropolises.routes");
 const client = require("./client.routes");
 const admin = require("./admin.routes");
+const renter = require("./renter.routes")
 
 module.exports = {
     exemple,
@@ -13,5 +14,6 @@ module.exports = {
     category,
     metropolises,
     client,
-    admin
+    admin,
+    renter
 };
