@@ -50,7 +50,7 @@ const loginAdmin = async (req, res) => {
     res.status(200).json({
         id: foundUser[0].ADMINISTRATOR_ID,
         username: foundUser[0].LOGIN,
-        authenticationToken: token
+        authenticationToken: ADMINISTRATOR_TOKEN
     });
 };
 
