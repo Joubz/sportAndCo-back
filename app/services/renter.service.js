@@ -11,7 +11,7 @@ const createRenter = async (newRenter) => {
 
   const params = [
     {
-      COMPANY_NAME: newRenter.company_name,
+      COMPANY_NAME: newRenter.companyName,
       FIRST_NAME: newRenter.firstName,
       LAST_NAME: newRenter.lastName,
       EMAIL: newRenter.email,
@@ -22,6 +22,9 @@ const createRenter = async (newRenter) => {
       ADDITIONAL_ADDRESS: newRenter.additionalAddress,
       POSTAL_CODE: newRenter.postalCode,
       CITY: newRenter.city,
+      IMAGE_LINK: newRenter.imageLink,
+      METROPOLISES_ID: newRenter.metropolises,
+      ACCEPTED: newRenter.isAccepted
     },
   ];
 
