@@ -83,8 +83,35 @@ const getOrderByEquipmentForAvailability = async (equipmentId) => {
     return queryRes;
 }
 
+/**
+ * Récupère les commandes depuis la BDD qui concernent le client spécifié.
+ * @param clentId Identifiant du client concerné.
+ * @returns Les commandes trouvées, une erreur sinon.
+ */
+const getOrderListByClient = async (clentId) => {
+
+    const query = 'SELECT * ' +
+        'FROM ORDER_VIEW ' +
+        'WHERE CLIENT_ID = ?';
+
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query, parseInt(clentId));
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+    return queryRes;
+}
+
 module.exports = {
     getOrder,
     getOrderByEquipment,
-    getOrderByEquipmentForAvailability
+    getOrderByEquipmentForAvailability,
+    getOrderListByClient
 }

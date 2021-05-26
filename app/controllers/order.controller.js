@@ -53,8 +53,26 @@ const getOrderByEquipmentForAvailability = async (req, res) => {
     res.status(200).json(foundOrder);
 };
 
+/**
+ * Récupère les commandes dont l'id de client est passé en paramètre de la route
+ * @param req Requête
+ * @param res Réponse
+ * @return Les commandes demandées / une erreur sinon
+ */
+const getOrderListByClient = async (req, res) => {
+    let foundOrderList = [];
+
+    try {
+            foundOrderList = await services.order.getOrderListByClient(req.params.clientId);
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(foundOrderList);
+};
+
 module.exports = {
     getOrder,
     getOrderByEquipment,
-    getOrderByEquipmentForAvailability
+    getOrderByEquipmentForAvailability,
+    getOrderListByClient
 }
