@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const sendConfirmationMail = async (clientFirstName, clientLastName, clientMail) => {
+const sendClientConfirmationMail = async (clientFirstName, clientLastName, clientMail) => {
     const mailOptions = {
         from: 'sport.and.co.33@gmail.com',
         to: clientMail,
@@ -33,7 +33,6 @@ const sendConfirmationMail = async (clientFirstName, clientLastName, clientMail)
         throw new Error(err);
     }
 }
-
 const sendOrderConfirmationMail = async (clientFirstName, clientLastName, clientMail, equipmentName, equipmentQuantity, price) => {
     const mailOptions = {
         from: 'sport.and.co.33@gmail.com',
@@ -54,7 +53,48 @@ const sendOrderConfirmationMail = async (clientFirstName, clientLastName, client
     }
 }
 
+const sendRenterAcceptConfirmationMail = async (renterFirstName, renterLastName, renterMail, companyName) => {
+    const mailOptions = {
+        from: 'sport.and.co.33@gmail.com',
+        to: renterMail,
+        subject: 'Sport&Co : Compte loueur accepté',
+        text: 'Bonjour ' + renterFirstName + ' ' + renterLastName + '\n' + 'Votre compte sur Sport&Co pour votre entreprise ' + companyName  + ' a été validé par l\'administration.'
+    };
+
+    try {
+        await transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                throw new Error(error);
+            }
+        });
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+const sendRenterDeleteConfirmationMail = async (renterFirstName, renterLastName, renterMail, companyName) => {
+    const mailOptions = {
+        from: 'sport.and.co.33@gmail.com',
+        to: renterMail,
+        subject: 'Sport&Co : Compte loueur refusé',
+        text: 'Bonjour ' + renterFirstName + ' ' + renterLastName + '\n' + 'Votre compte sur Sport&Co pour votre entreprise ' + companyName  + ' a été refusé par l\'administration.' + '\n' +
+            'En conséquence, ce dernier à été supprimer.'
+    };
+
+    try {
+        await transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                throw new Error(error);
+            }
+        });
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
 module.exports = {
-    sendConfirmationMail,
-    sendOrderConfirmationMail
+    sendClientConfirmationMail,
+    sendOrderConfirmationMail,
+    sendRenterAcceptConfirmationMail,
+    sendRenterDeleteConfirmationMail
 }

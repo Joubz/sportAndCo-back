@@ -11,6 +11,7 @@ const bill = require("./bill.service");
 const client = require("./client.service");
 const mail = require("./mail.service");
 const admin = require("./admin.service");
+const renter = require("./renter.service");
 
 module.exports = {
     exception,
@@ -25,5 +26,6 @@ module.exports = {
     bill,
     client,
     mail,
-    admin
+    admin,
+    renter
 };
