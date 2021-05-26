@@ -5,6 +5,7 @@ const category = require("./category.controller");
 const metropolises = require("./metropolises.controller");
 const payment = require("./payment.controller");
 const client = require("./client.controller");
+const admin = require("./admin.controller");
 
 module.exports = {
     exemple,
@@ -13,5 +14,6 @@ module.exports = {
     category,
     metropolises,
     payment,
-    client
+    client,
+    admin
 };
