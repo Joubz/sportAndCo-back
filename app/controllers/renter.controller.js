@@ -32,7 +32,7 @@ const createRenter = async (req, res) => {
 };
 
 /**
- * Récupère la liste des mails clients
+ * Récupère la liste des mails loueurs
  * @param {*} req Requête
  * @param {*} res Réponse Retourne la code http 200 et la liste des mails
  * @returns L'erreur retournée par le service
