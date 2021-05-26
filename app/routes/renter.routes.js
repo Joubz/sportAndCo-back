@@ -10,4 +10,8 @@ router.get('/list-mail', controllers.renter.getListMailRenter);
 
 router.post('/create-renter', controllers.renter.createRenter);
 
+router.post('/login', middlewares.auth.loginRenterControl, controllers.renter.loginRenter);
+
+
+
 module.exports = router;

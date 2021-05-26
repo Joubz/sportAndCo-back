@@ -61,7 +61,33 @@ const createRenter = async (newRenter) => {
   return queryRes;
 }
 
+/**
+ * 
+ * @param {*} email 
+ * @returns 
+ */
+const loginRenter = async (email) => {
+  const query = 'SELECT * FROM RENTER WHERE email = ?';
+
+  let [queryRes, fields] = [];
+
+  await transaction(async connection => {
+    try {
+      [queryRes, fields] =  await connection.query(query, email);
+    } catch(err) {
+      throw new Error(err); 
+    }
+  })
+  .catch((err) => {
+    throw err; 
+  });
+
+  return queryRes;
+
+};
+
 module.exports = {
   createRenter,
-  getListMailRenter
+  getListMailRenter, 
+  loginRenter
 }

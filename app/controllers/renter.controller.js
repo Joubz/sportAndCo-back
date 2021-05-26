@@ -48,7 +48,51 @@ const createRenter = async (req, res) => {
     res.status(200).json(listMailRenter);
 };
 
+const loginRenter = async (req, res) => {
+	let foundUser = []; 
+
+	let ipClient = req.headers["x-forwarded-for"] ? req.headers["x-forwarded-for"].split(',')[0] : req.ip
+
+	try {
+		foundUser = await services.renter.loginRenter(req.body.email); 
+		
+		if (foundUser.length === 0) {
+			throw new services.exception.httpException('CLIENT_016'); 
+		}
+	} catch (err) {
+		return services.exception.generateException(err, res);
+	}
+
+	const isPasswordValid = bcrypt.compareSync (
+		req.body.password, 
+		foundUser[0].PASSWORD
+	);
+
+	if (!isPasswordValid) {
+		return services.exception.generateException(new services.exception.httpException('CLIENT_016'), res);
+	}
+
+	const token = jwt.sign(
+		{
+			id: foundUser[0].RENTER_ID,
+			email: foundUser[0].EMAIL, 
+			ipClient
+		},
+		"jwt-secret",
+		{
+			expiresIn: "7d"
+		}
+	);
+
+	res.status(200).json({
+		id: foundUser[0].RENTER_ID, 
+		email: foundUser[0].EMAIL, 
+		authentificationToken: token
+	});
+};
+
 module.exports = {
 	createRenter,
-	getListMailRenter
+	getListMailRenter, 
+	loginRenter
 };
