@@ -87,7 +87,7 @@ const loginRenter = async (req, res) => {
 	res.status(200).json({
 		id: foundUser[0].RENTER_ID, 
 		email: foundUser[0].EMAIL, 
-		authentificationToken: token
+		renterAuthentificationToken: token
 	});
 };
 
