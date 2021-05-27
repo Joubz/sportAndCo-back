@@ -87,8 +87,29 @@ const isAuthentified = (req, res, next) => {
     }
 }
 
+const loginRenterControl = (req, res, next) => {
+	const credentials = req.body;
+
+    if (!credentials) {
+		return services.exception.generateException(new services.exception.httpException('CLIENT_010'), res);
+	}
+
+    const data = {
+		username: credentials.email,
+		password: credentials.password
+	};
+
+	const rules = {
+		username: 'required|string',
+		password: 'required|string'
+	};
+
+	next();
+};
+
 module.exports = {
-    isAuthentified,
+    isAuthentified, 
+    loginRenterControl,
     isAuthentifiedAdmin,
     loginAdminControl
 }
