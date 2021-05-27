@@ -19,7 +19,7 @@ const createRenter = async (req, res) => {
     try {
         await services.renter.createRenter(newRenter);
 
-        await services.mail.sendConfirmationMail(
+        await services.mail.sendClientConfirmationMail(
             newRenter.firstName,
             newRenter.lastName,
             newRenter.email
