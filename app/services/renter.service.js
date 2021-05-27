@@ -111,9 +111,39 @@ const deleteRenter = async (renterId) => {
     return queryRes;
 }
 
+/**
+ * Récupère le loueur associé à l'équipement
+ * @param equipmentId l'id de l'équipement
+ * @return Le loueur de l'équipement trouvé
+ */
+const getRenterByEquipment = async (equipmentId) => {
+    const query =
+        'SELECT renter.* ' +
+        'FROM RENTER ' +
+        'JOIN EQUIPMENT ' +
+        'ON RENTER.RENTER_ID = EQUIPMENT.RENTER_ID ' +
+        'WHERE EQUIPMENT.EQUIPMENT_ID = ?';
+
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query, parseInt(equipmentId));
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return queryRes;
+}
+
 module.exports = {
     getNotAcceptList,
     acceptRenter,
     deleteRenter,
-    getRenterList
+    getRenterList,
+    getRenterByEquipment
 }

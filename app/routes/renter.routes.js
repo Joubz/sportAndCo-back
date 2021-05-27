@@ -14,4 +14,6 @@ router.put("/accept-renter/:renterId",  controllers.renter.acceptRenter);
 
 router.delete("/:renterId/:renterFirstName/:renterLastName/:renterMail/:companyName",  controllers.renter.deleteRenter);
 
+router.get("/get-by-equipment/:equipmentId", controllers.renter.getRenterByEquipment);
+
 module.exports = router;

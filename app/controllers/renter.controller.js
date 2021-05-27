@@ -8,7 +8,6 @@ const services = require('../services');
  * @param {*} res Réponse Retourne la code http 200 et la liste des catégories
  * @returns L'erreur retournée par le service
  */
-
 const getRenterList = async (req, res) => {
     let renterList = [];
 
@@ -87,9 +86,27 @@ const deleteRenter = async (req, res) => {
     res.status(200).json();
 }
 
+/**
+ * Récupère la liste des loueurs
+ * @param {*} req Requête
+ * @param {*} res Réponse Retourne la code http 200 et la liste des catégories
+ * @returns L'erreur retournée par le service
+ */
+const getRenterByEquipment = async (req, res) => {
+    let renter = [];
+
+    try {
+        renter = await services.renter.getRenterByEquipment(req.params.equipmentId);
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(renter);
+};
+
 module.exports = {
     getNotAcceptList,
     acceptRenter,
     deleteRenter,
-    getRenterList
+    getRenterList,
+    getRenterByEquipment
 }
