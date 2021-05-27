@@ -93,13 +93,6 @@ const loginRenter = async (req, res) => {
 	});
 };
 
-module.exports = {
-	createRenter,
-	getListMailRenter, 
-	loginRenter
-};
-const services = require('../services');
-
 /**
  * Récupère la liste des loueurs
  * @param {*} req Requête
@@ -189,5 +182,8 @@ module.exports = {
     getNotAcceptList,
     acceptRenter,
     deleteRenter,
-    getRenterList
+    getRenterList,
+	createRenter,
+	getListMailRenter, 
+	loginRenter
 }
