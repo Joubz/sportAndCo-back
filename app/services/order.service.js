@@ -83,8 +83,48 @@ const getOrderByEquipmentForAvailability = async (equipmentId) => {
     return queryRes;
 }
 
+/**
+ * Insère une commande dans la BDD
+ * @param order La commande à enregistrer
+ */
+const postOrder = async (order) => {
+
+    let lastId;
+
+    const queryObject =
+        'INSERT INTO ' +
+        'EQUIPMENT_ORDER ' +
+        'SET ?';
+
+    const params = [{
+        CLIENT_ID: order.client.id,
+        EQUIPMENT_ID: order.equipment.id,
+        START_DATE: order.startDate,
+        END_DATE: order.endDate,
+        RENT_DATE: order.rentDate,
+        STATUS_RENDERED: order.statusReturned,
+        QUANTITY_RENTED: order.quantityRented
+    }];
+
+    await transaction(async connection => {
+        try {
+            const result = await connection.query(queryObject, params);
+            lastId = result[0].insertId;
+
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return lastId;
+}
+
 module.exports = {
     getOrder,
     getOrderByEquipment,
-    getOrderByEquipmentForAvailability
+    getOrderByEquipmentForAvailability,
+    postOrder
 }

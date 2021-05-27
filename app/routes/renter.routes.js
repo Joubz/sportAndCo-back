@@ -12,6 +12,12 @@ router.post('/create-renter', controllers.renter.createRenter);
 
 router.post('/login', middlewares.auth.loginRenterControl, controllers.renter.loginRenter);
 
+router.get('/list', controllers.renter.getRenterList);
 
+router.get('/not-accept-list', controllers.renter.getNotAcceptList);
+
+router.put("/accept-renter/:renterId",  controllers.renter.acceptRenter);
+
+router.delete("/:renterId/:renterFirstName/:renterLastName/:renterMail/:companyName",  controllers.renter.deleteRenter);
 
 module.exports = router;

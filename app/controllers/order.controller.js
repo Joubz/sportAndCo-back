@@ -53,8 +53,38 @@ const getOrderByEquipmentForAvailability = async (req, res) => {
     res.status(200).json(foundOrder);
 };
 
+/**
+ * Ajoute une commande client et facture
+ * @param req Requête
+ * @param res Réponse
+ */
+const postOrder = async (req, res) => {
+    let order = req.body.order;
+
+    try {
+        const lastId = await services.order.postOrder(order);
+        order.id = lastId;
+        await services.bill.postBill(order);
+
+        await services.mail.sendOrderConfirmationMail(
+            order.client.firstName,
+            order.client.lastName,
+            order.client.email,
+            order.equipment.name,
+            order.quantityRented,
+            order.bill.billPrice
+        );
+
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json();
+
+};
+
 module.exports = {
     getOrder,
     getOrderByEquipment,
-    getOrderByEquipmentForAvailability
+    getOrderByEquipmentForAvailability,
+    postOrder
 }
