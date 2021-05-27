@@ -63,12 +63,10 @@ const loginRenter = async (req, res) => {
 		return services.exception.generateException(err, res);
 	}
 
-	// const isPasswordValid = bcrypt.compareSync (
-	// 	req.body.password, 
-	// 	foundUser[0].PASSWORD
-	// );
-
-	const isPasswordValid = true; 
+	 const isPasswordValid = bcrypt.compareSync (
+	 	req.body.password,
+	 	foundUser[0].PASSWORD
+	 );
 
 	if (!isPasswordValid) {
 		return services.exception.generateException(new services.exception.httpException('CLIENT_016'), res);
@@ -88,8 +86,8 @@ const loginRenter = async (req, res) => {
 
 	res.status(200).json({
 		id: foundUser[0].RENTER_ID, 
-		email: foundUser[0].EMAIL, 
-		renterAuthentificationToken: token
+		email: foundUser[0].EMAIL,
+        authenticationToken: token
 	});
 };
 
