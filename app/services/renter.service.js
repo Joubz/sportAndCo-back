@@ -23,7 +23,7 @@ const createRenter = async (newRenter) => {
       POSTAL_CODE: newRenter.postalCode,
       CITY: newRenter.city,
       IMAGE_LINK: newRenter.imageLink,
-      METROPOLISES_ID: newRenter.metropolises,
+      METROPOLISES_ID: newRenter.metropolises.id,
       ACCEPTED: newRenter.isAccepted
     },
   ];
