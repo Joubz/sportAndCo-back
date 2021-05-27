@@ -19,7 +19,7 @@ const createClient = async (req, res) => {
 	try {
 		await services.client.createClient(newClient);
 
-		await services.mail.sendConfirmationMail(
+		await services.mail.sendClientConfirmationMail(
 			newClient.firstName,
 			newClient.lastName,
 			newClient.email
