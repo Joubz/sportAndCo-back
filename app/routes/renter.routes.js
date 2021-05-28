@@ -14,6 +14,9 @@ router.get('/not-accept-list', controllers.renter.getNotAcceptList);
 
 router.get("/get-by-equipment/:equipmentId", controllers.renter.getRenterByEquipment);
 
+// TODO : Middleware pour controler authentification du renter
+router.get("/list-equipment-renter/:renterId", controllers.renter.getEquipmentByRenter); 
+
 router.put("/accept-renter/:renterId",  controllers.renter.acceptRenter);
 
 router.post('/create-renter', controllers.renter.createRenter);

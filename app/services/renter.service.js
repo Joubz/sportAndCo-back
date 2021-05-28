@@ -227,6 +227,28 @@ const getRenterByEquipment = async (equipmentId) => {
     return queryRes;
 }
 
+const getEquipmentByRenter = async (renterId) => {
+    const query =
+        'SELECT * ' +
+        'FROM EQUIPMENT_VIEW ' +
+        'WHERE RENTER_ID = ? ';
+    
+    let [queryRes, fields] = [];
+
+    await transaction(async connection => {
+        try {
+            [queryRes, fields] = await connection.query(query, parseInt(renterId));
+        } catch (err) {
+            throw new Error(err);
+        }
+    })
+        .catch((err) => {
+            throw err;
+        });
+
+    return queryRes;
+}
+
 module.exports = {
     createRenter,
     getListMailRenter,
@@ -235,6 +257,7 @@ module.exports = {
     acceptRenter,
     deleteRenter,
     getRenterList,
-    getRenterByEquipment
+    getRenterByEquipment,
+    getEquipmentByRenter
 
 }

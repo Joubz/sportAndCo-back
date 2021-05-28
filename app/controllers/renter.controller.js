@@ -206,6 +206,17 @@ const getRenterByEquipment = async (req, res) => {
     res.status(200).json(renter);
 };
 
+const getEquipmentByRenter = async (req, res) => {
+    let listEquipments = [];
+
+    try {
+        listEquipments = await services.renter.getEquipmentByRenter(req.params.renterId);
+    } catch(err) {
+        return services.exception.generateException(err, res);
+    }
+    res.status(200).json(listEquipments);
+};
+
 module.exports = {
     getNotAcceptList,
     acceptRenter,
@@ -214,5 +225,6 @@ module.exports = {
     getRenterByEquipment,
     createRenter,
     getListMailRenter,
-    loginRenter
+    loginRenter, 
+    getEquipmentByRenter
 }
