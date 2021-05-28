@@ -65,7 +65,7 @@ const addEquipment =  async (newEquipment) => {
         {
             RENTER_ID: newEquipment.renter.id,
             CATEGORY_ID : newEquipment.category.id,
-            EQUIPMENT_ID: newEquipment.name,
+            EQUIPMENT_NAME: newEquipment.name,
             DESCRIPTION: newEquipment.description,
             START_DATE: newEquipment.startDate,
             END_DATE: newEquipment.endDate,
