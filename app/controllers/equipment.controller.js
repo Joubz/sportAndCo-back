@@ -65,8 +65,33 @@ const searchEquipment = async (req, res) => {
     res.status(200).json(listEquipments);
 };
 
+const addEquipment = async (req, res) => {
+    let newEquipment = req.body.newEquipment;
+
+    try {
+        if (newEquipment.imageLink1) {
+            newEquipment.imageLink1 = await services.image.saveImage(newEquipment.imageLink1);
+        }
+        if (newEquipment.imageLink2) {
+            newEquipment.imageLink2 = await services.image.saveImage(newEquipment.imageLink2);
+        }
+        if (newEquipment.imageLink3) {
+            newEquipment.imageLink3 = await services.image.saveImage(newEquipment.imageLink3);
+        }
+
+        await services.equipment.addEquipment(newEquipment);
+
+    } catch (err) {
+        return services.exception.generateException(err, res);
+    }
+
+    res.status(200).json();
+};
+
+
 module.exports = {
     getEquipment,
     getListEquipment,
-    searchEquipment
+    searchEquipment,
+    addEquipment
 }

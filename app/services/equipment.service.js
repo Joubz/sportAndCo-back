@@ -54,7 +54,42 @@ const getListEquipment = async () => {
     return queryRes;
 }
 
+/**
+ * Crée un nouveau équipement en base.
+ * @param {*} newEquipment L'équipement reçu
+ */
+const addEquipment =  async (newEquipment) => {
+    const query = "INSERT INTO EQUIPMENT SET ?";
+
+    const params = [
+        {
+            RENTER_ID: newEquipment.renter.id,
+            CATEGORY_ID : newEquipment.category.id,
+            EQUIPMENT_NAME: newEquipment.name,
+            DESCRIPTION: newEquipment.description,
+            START_DATE: newEquipment.startDate,
+            END_DATE: newEquipment.endDate,
+            PRICE: newEquipment.price,
+            TOTAL_QUANTITY: newEquipment.totalQuantity,
+            IMAGE_LINK_1: newEquipment.imageLink1,
+            IMAGE_LINK_2: newEquipment.imageLink2,
+            IMAGE_LINK_3: newEquipment.imageLink3,
+        },
+    ];
+
+    await transaction(async (connection) => {
+        try {
+            await connection.query(query, params);
+        } catch (err) {
+            throw new Error(err);
+        }
+    }).catch((err) => {
+        throw err;
+    });
+}
+
 module.exports = {
     getEquipment,
-    getListEquipment
+    getListEquipment,
+    addEquipment
 }
