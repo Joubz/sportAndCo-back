@@ -12,6 +12,6 @@ router.get("/search-equipment/:equipmentName/:startDate/:endDate/:categoryId/:me
 
 router.get("/:equipmentId", middlewares.auth.isAuthentified, controllers.equipment.getEquipment);
 
-router.post("/", controllers.equipment.addEquipment);
+router.post("/add-equipment", controllers.equipment.addEquipment);
 
 module.exports = router;
