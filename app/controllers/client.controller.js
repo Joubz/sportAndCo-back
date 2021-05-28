@@ -44,7 +44,7 @@ const loginClient = async (req, res) => {
 	let ipClient = req.headers["x-forwarded-for"] ? req.headers["x-forwarded-for"].split(',')[0] : req.ip;
 
 	try {
-		foundUser = await services.client.loginClient(loginClient.email);
+		foundUser = await services.client.loginClient(loginClient.email); 
 
 		if (foundUser.length === 0) {
 			throw new services.exception.httpException('CLIENT_016');
